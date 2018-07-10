@@ -4,10 +4,8 @@ const app = express()
 app.get('/', (req, res) => res.send('Hello World'))
 
 
-function addExtra(price) {
-
-  return new Promise(function(resolve, reject) {
-    console.log(price)
+addExtra = (price) => {
+  return new Promise((resolve, reject) => {
     if (price > 2) reject("Price cannont exceed 3")
 
      setTimeout(function() {
@@ -38,4 +36,4 @@ Promise.all(promises).then((resolvedPromises) => {
 //returns first resolved value
 Promise.race(promises).then((firstDone) => {
   console.log(firstDone)
-}) 
+})
