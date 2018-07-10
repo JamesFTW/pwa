@@ -14,13 +14,13 @@ addExtra = (price) => {
   })
  }
 
-const price = new Promise(function(resolve, reject) {
+const price = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve("Price A")
   }, 300)
 })
 
-const slowPrice = new Promise(function(resolve, reject) {
+const slowPrice = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve("Price B")
   }, 800)
