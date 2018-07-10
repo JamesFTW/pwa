@@ -1,3 +1,9 @@
+const express = require('express')
+const app = express()
+
+app.get('/', (req, res) => res.send('Hello World'))
+
+
 function addExtra(price) {
 
   return new Promise(function(resolve, reject) {
@@ -32,4 +38,4 @@ Promise.all(promises).then((resolvedPromises) => {
 //returns first resolved value
 Promise.race(promises).then((firstDone) => {
   console.log(firstDone)
-})
+}) 
