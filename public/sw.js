@@ -1,11 +1,11 @@
 
-const pwaCache = 'pwa-cache-1'
+const pwaCache = 'pwa-cache-1330'
 
-const staticCache = ['/', 'index.html', 'style.css', 'fetch.js']
+const staticCache = ['/', 'index.html', 'style.css', 'fetch.js', 'manifest.json']
 
 self.addEventListener('fetch', (e) => {
   let firstRejectRecieved = false
-  
+
   let rejectOnce = () => {
     if(firstRejectRecieved) {
       reject('No response recieved')
