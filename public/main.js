@@ -1,9 +1,9 @@
 
- // if(navigator.serviceWorker) {
- //   navigator.serviceWorker.register('/sw.js').then((registration) => {
- //
- //   }).catch(console.log)
- // }
+ if(navigator.serviceWorker) {
+   navigator.serviceWorker.register('/sw.js').then((registration) => {
+
+   }).catch(console.log)
+ }
 
  // Giphy API object
  var giphy = {
