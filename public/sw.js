@@ -1,7 +1,25 @@
 
-const pwaCache = 'pwa-cache-1330'
+const version = '1.0'
 
-const staticCache = ['/', 'index.html', 'style.css', 'fetch.js', 'manifest.json']
+const appAssets = [
+  'index.html',
+  'style.css',
+  'main.js',
+  'manifest.json',
+  'images/flame.png',
+  'images/logo.png',
+  'images/sync.png',
+  'vendor/bootstrap.min.css',
+  'vendor/jquery.min.js'
+]
+
+self.addEventListener('install', (e) => {
+  e.waitUntil(
+    caches.open(`static-${version}`)
+      .then(cache => cache.addAll(appAssets))
+  )
+})
+
 
 self.addEventListener('fetch', (e) => {
   let firstRejectRecieved = false
@@ -27,47 +45,6 @@ self.addEventListener('fetch', (e) => {
     }).catch(rejectOnce)
   })
   e.respondWith(firstResponse)
-
-
-  //4. Cache with Network Update
-  // e.respondWith(
-  //   caches.open(pwaCache).then((cache) => {
-  //
-  //     return cache.match(e.request).then((res) => {
-  //       let updatedRes = fetch(e.request).then((newRes) => {
-  //          cache.put(e.request, newRes.clone())
-  //
-  //          return newRes
-  //       })
-  //
-  //       return res || updatedRes
-  //     })
-  //   })
-  // )
-
-  //3. Network with Cache fallback
-  // e.respondWith(
-  //   fetch(e.request).then((res) => {
-  //     caches.open(pwaCache).then(cache => cache.put(e.request, res))
-  //
-  //     return res.clone()
-  //   }).catch(err => caches.match(e.request))
-  // )
-
-  //2. Cache with network fallback
-  // e.respondWith(
-  //   caches.match(e.request).then((res) => {
-  //     if(res) return res
-  //
-  //     return fetch(e.request).then((newRes) => {
-  //       caches.open(pwaCache).then(cache => cache.put(e.request, newRes))
-  //
-  //       return newRes.clone()
-  //     })
-  //   })
-  // )
-  //1. Cache only. Static assets - App Shell
-  // e.respondWith(caches.match(e.request))
 
 })
 
