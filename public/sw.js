@@ -33,12 +33,12 @@ self.addEventListener('activate', (e) => {
 })
 
 //Static cache startegy - cache with network fallback
-const staticCache = (req) => {
+const staticCache = (req, cacheName = `static-${version}`) => {
   return caches.match(req).then(cachedRes => {
     if(cachedRes) return cachedRes
 
     return fetch(req).then(networkRes => {
-      caches.open(`static-${version}`)
+      caches.open(cacheName)
         .then(cache => cache.put(req, networkRes))
 
         return networkRes.clone()
@@ -47,8 +47,27 @@ const staticCache = (req) => {
 }
 
 
+const fallbackCache = (req) => {
+
+  return fetch(req).then(networkRes => {
+    if(!networkRes.ok) throw 'Fetch exception'
+
+    caches.open(`static-${version}`)
+      .then(cache => cache.put(req, networkRes))
+
+    return networkRes.clone()
+  }).catch(err => caches.match(req))
+}
+
+
 self.addEventListener('fetch', (e) => {
   if(e.request.url.match(location.origin)) {
      e.respondWith(staticCache(e.request))
+
+
+  } else if(e.request.url.match('api.giphy.com/v1/gifs/trending')) {
+    e.respondWith(fallbackCache(e.request))
+  } else if(e.request.url.match('giphy.com/media')) {
+    e.respondWith(staticCache(e.request, 'giphy'))
   }
 })
