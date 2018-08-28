@@ -77,7 +77,6 @@ self.addEventListener('message', (e) => {
 
 
 self.addEventListener('fetch', (e) => {
-  console.log(e.request)
   if(e.request.url.match(location.origin)) {
      e.respondWith(staticCache(e.request))
 
@@ -87,4 +86,4 @@ self.addEventListener('fetch', (e) => {
   } else if(e.request.url.match('giphy.com/media')) {
     e.respondWith(staticCache(e.request, 'giphy'))
   }
-})
+}).catch(err => console.log(err))
