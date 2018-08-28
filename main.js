@@ -6,7 +6,7 @@
  }
 
  const giphyCahceClean = (giphys) => {
-   navigator.serviceWorker.getRegistration().then((reg) => {
+   navigator.serviceWorker.getRegistration('/sw.js').then((reg) => {
      if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
    })
  }
