@@ -9,12 +9,6 @@
    }
  }
 
- // const giphyCahceClean = (giphys) => {
- //   navigator.serviceWorker.getRegistration('sw.js').then((reg) => {
- //     if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
- //   }).catch(err => console.log(err))
- // }
-
 
 
  // Giphy API object
@@ -41,7 +35,7 @@
        // Loop Giphys
        $.each( res.data, function (i, giphy) {
          latestGiphys.push(giphy.images.downsized_large.url)
-         console.log(latestGiphys)
+      
            // Add Giphy HTML
          $('#giphys').prepend(
            '<div class="col-sm-6 col-md-4 col-lg-3 p-1">' +
