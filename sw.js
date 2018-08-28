@@ -77,10 +77,10 @@ self.addEventListener('fetch', (e) => {
   if(e.request.url.match(location.origin)) {
      e.respondWith(staticCache(e.request))
 
-
   } else if(e.request.url.match('api.giphy.com/v1/gifs/trending')) {
     e.respondWith(fallbackCache(e.request))
+
   } else if(e.request.url.match('giphy.com/media')) {
     e.respondWith(staticCache(e.request, 'giphy'))
   }
-}).catch(err => console.log(err))
+})
