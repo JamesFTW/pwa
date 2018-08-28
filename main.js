@@ -1,12 +1,12 @@
 
  if(navigator.serviceWorker) {
-   navigator.serviceWorker.register('/sw.js').then((registration) => {
+   navigator.serviceWorker.register('sw.js').then((registration) => {
 
    }).catch(console.log)
  }
 
  const giphyCahceClean = (giphys) => {
-   navigator.serviceWorker.getRegistration('/sw.js').then((reg) => {
+   navigator.serviceWorker.getRegistration('sw.js').then((reg) => {
      if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
    }).catch(err => console.log(err))
  }
