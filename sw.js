@@ -77,6 +77,7 @@ self.addEventListener('message', (e) => {
 
 
 self.addEventListener('fetch', (e) => {
+  console.log(e.request)
   if(e.request.url.match(location.origin)) {
      e.respondWith(staticCache(e.request))
 
