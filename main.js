@@ -8,7 +8,7 @@
  const giphyCahceClean = (giphys) => {
    navigator.serviceWorker.getRegistration('/sw.js').then((reg) => {
      if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
-   })
+   }).catch(err => console.log(err))
  }
 
  // Giphy API object
