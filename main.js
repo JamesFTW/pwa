@@ -1,6 +1,6 @@
 
  if(navigator.serviceWorker) {
-   navigator.serviceWorker.register('sw.js').catch(console.error)
+   navigator.serviceWorker.register('sw.js').then().catch(console.error)
 
    function giphyCahceClean(giphys){
      navigator.serviceWorker.getRegistration('sw.js').then((reg) => {
