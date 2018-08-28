@@ -1,17 +1,14 @@
 
-const version = '1.1'
+const version = '1.0'
 
 const appAssets = [
   'index.html',
-  'style.css',
   'main.js',
-  'manifest.json',
   'images/flame.png',
   'images/logo.png',
   'images/sync.png',
   'vendor/bootstrap.min.css',
   'vendor/jquery.min.js',
-  'manifest.json'
 ]
 
 self.addEventListener('install', (e) => {
