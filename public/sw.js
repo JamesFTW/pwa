@@ -1,5 +1,5 @@
 
-const version = '1.1'
+const version = '1.2'
 
 const appAssets = [
   'index.html',
@@ -32,6 +32,17 @@ self.addEventListener('activate', (e) => {
   e.waitUntil(cacheCleaned)
 })
 
+//Clean old giphys from giphy cache
+const cleanGiphyCahce = (giphys) => {
+  caches.open('giphy').then( cache => {
+    cache.keys().then( keys => {
+      keys.forEach( key => {
+        if(!giphys.includes(key.url)) cache.delete(key)
+      })
+    })
+  })
+}
+
 //Static cache startegy - cache with network fallback
 const staticCache = (req, cacheName = `static-${version}`) => {
   return caches.match(req).then(cachedRes => {
@@ -58,6 +69,10 @@ const fallbackCache = (req) => {
     return networkRes.clone()
   }).catch(err => caches.match(req))
 }
+
+self.addEventListener('message', (e) => {
+  if(e.data.action === 'cleanGiphyCahce') cleanGiphyCahce(e.data.giphys)
+})
 
 
 self.addEventListener('fetch', (e) => {
