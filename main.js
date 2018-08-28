@@ -1,15 +1,15 @@
 
  if(navigator.serviceWorker) {
-   navigator.serviceWorker.register('sw.js').then((registration) => {
+   navigator.serviceWorker.register('sw.js').catch(console.error)
 
-   }).catch(console.log)
+   function giphyCahceClean(giphys){
+     navigator.serviceWorker.getRegistration('sw.js').then((reg) => {
+       if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
+     }).catch(err => console.log(err))
+   }
  }
 
- const giphyCahceClean = (giphys) => {
-   navigator.serviceWorker.getRegistration('sw.js').then((reg) => {
-     if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
-   }).catch(err => console.log(err))
- }
+
 
  // Giphy API object
  var giphy = {
