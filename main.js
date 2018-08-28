@@ -2,18 +2,18 @@
  if(navigator.serviceWorker) {
    navigator.serviceWorker.register('sw.js').then().catch(console.error)
 
-   // function giphyCahceClean(giphys){
-   //   navigator.serviceWorker.getRegistration('sw.js').then((reg) => {
-   //     if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
-   //   }).catch(err => console.log(err))
-   // }
+   function giphyCahceClean(giphys){
+     navigator.serviceWorker.getRegistration('sw.js').then((reg) => {
+       if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
+     }).catch(err => console.log(err))
+   }
  }
 
- const giphyCahceClean = (giphys) => {
-   navigator.serviceWorker.getRegistration('sw.js').then((reg) => {
-     if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
-   }).catch(err => console.log(err))
- }
+ // const giphyCahceClean = (giphys) => {
+ //   navigator.serviceWorker.getRegistration('sw.js').then((reg) => {
+ //     if(reg.active) reg.active.postMessage({action: 'cleanGiphyCahce', giphys: giphys})
+ //   }).catch(err => console.log(err))
+ // }
 
 
 
