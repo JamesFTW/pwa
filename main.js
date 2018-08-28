@@ -41,6 +41,7 @@
        // Loop Giphys
        $.each( res.data, function (i, giphy) {
          latestGiphys.push(giphy.images.downsized_large.url)
+         console.log(latestGiphys)
            // Add Giphy HTML
          $('#giphys').prepend(
            '<div class="col-sm-6 col-md-4 col-lg-3 p-1">' +
