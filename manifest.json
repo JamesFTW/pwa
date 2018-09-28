@@ -1,6 +1,6 @@
 {
-  "name": "GiphyGram",
-  "short_name": "GiphyGram",
+  "name": "PWA",
+  "short_name": "PWA",
   "theme_color": "#2196f3",
   "background_color": "#ffffff",
   "display": "standalone",
