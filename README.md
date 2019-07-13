@@ -11,5 +11,6 @@ $ npm install
 $ node server.js
 ```
 
+Check it out live here: <https://jamesftw.github.io/pwa/>
 
 
